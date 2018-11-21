@@ -1,0 +1,71 @@
+/ 各単語(Qiita,ホーム、コミュニティetc)の場所にリンクを記述すれば飛べるはず
+/ クリックしたら一覧表示する記述が（ ）の場所予定。書くべきhamlは下にほぼ完成形あります。jsなしで行けそうだけど検索してもわからず。
+/ 記述haml内にもコメントアウトあります
+
+.header
+  .short-header
+    .short-header-container
+      .short-header-container_left
+        .title
+          = link_to image_tag("header_logo.png"), root_path, class: "title_logo"
+        .home
+          %details
+            %summary
+            %ul
+              .articles_trend
+                = link_to "", trend_path
+              .articles_timeline
+                = link_to "", timeline_path
+              .articles_tag-feed
+                = link_to "", tag_feed_path
+        .community
+          %details
+            %summary
+            %ul
+              .user_list
+              .organizations
+              .calendar
+              .hr
+              .qiitadon
+              .hr
+              .community_guide
+              .manual
+        .search
+          = search_form_for search, url: articles_search_path do |f|
+            = f.text_field :title_or_body_cont, placeholder: "キーワードを入力", class: "messageform"
+            .search-icon
+        / .search
+        /   .search_megane
+        /   .search_input
+        /     %input{ class: "messageform", placeholder: 'キーワードを入力', type: 'search'}
+      - if user_signed_in?
+        .short-header-container_right
+          = link_to "", articles_stocks_path, class: "stock"
+          = link_to "", new_article_path, class: "postbutton"
+          / .notification
+          .login-user
+            %details
+              %summary
+                .user_arrow
+                - if current_user.image.blank?
+                  = image_tag "no-image.png", class: "profile_picture", alt:""
+                - else
+                  = image_tag "#{current_user.image}", class: "profile_picture", alt:"プロフ画"
+              %ul
+                .mypage
+                  = link_to "", user_path(id: current_user.id)
+                .hr
+                .draft
+                .request
+                .hr
+                .setting
+                .help
+                .hr
+                .logout
+                  = link_to "", destroy_user_session_path, method: :delete
+      - else
+        .short-header-container_right
+          .signin
+          = link_to "", new_user_registration_path, class: "signup_button"
+          .login
+          = link_to "", new_user_session_path, class: "login_button"

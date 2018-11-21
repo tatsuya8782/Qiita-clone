@@ -1,0 +1,58 @@
+#like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  .thumbs {
+    border: 2px solid #55c500;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 16px;
+    position: relative;
+    .fa-thumbs-up {
+      color: #55c500;
+      display: flex;
+      align: center;
+      position: absolute;
+      justify-content: center;
+    }
+    .likeCount {
+      position: absolute;
+      color: #55c500;
+      font-size: 20px;
+      top: -33px;
+    }
+  }
+  .check_icon {
+    border: 2px solid #55c500;
+    background-color: #55c500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 16px;
+    position: relative;
+    .fa-check {
+      color: white;
+      display: flex;
+      align: center;
+      position: absolute;
+      justify-content: center;
+    }
+    .likeCount {
+      position: absolute;
+      color: #55c500;
+      font-size: 20px;
+      top: -33px;
+    }
+  }
+}

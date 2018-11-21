@@ -1,0 +1,191 @@
+.container{
+  line-height: 1.42857;
+  height: 1000px;
+  width: 100%;
+    .container-body{
+      height: 100%;
+      max-width: 1160px;
+      margin: 24px auto 0;
+      padding: 0 10px;
+        .container-body-left{
+          height: 100%;
+          width: 64.66667%;
+          float: left;
+          padding-left: 10px;
+            .input-zone{
+              display: block;
+              margin-bottom: 29px;
+              word-wrap: break-word;
+              .searchbox{
+                color: #555;
+                width: calc(100% - 118px);
+                border-radius: 3px;
+                border: 1px solid #ccc;
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                padding: 2px 12px;
+              }
+              .input-button{
+                background-color: #59bb0c;
+                color: #fff;
+                border-color: #4ea30a;
+                padding: 4px 39px;
+                margin-left: 8px;
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 14px;
+                float: right;
+              }
+            }
+            .select-order-container{
+              border-bottom: 1px solid #ddd;
+              display: flex;
+                .tab-select{
+                  display: inline-block;
+                  float: left;
+                    li{
+                      background-color: #fff;
+                      color: #555;
+                      float: left;
+                      font-size: 14px;
+                      padding: 10px 15px;
+                      display: block;
+                      border: 1px solid #ddd;
+                      border-bottom-color: transparent;
+                      cursor: default;
+                      margin-bottom: -1px;
+                    }
+                }
+                .page-order{
+                  color: #4a4a4a;
+                  float: right;
+                  border: 1px solid #ccc;
+                  padding: 6px 12px;
+                  border-radius: 3px;
+                  margin-left: auto;
+                    ul{
+                      background-color: #fff;
+                      position: absolute;
+                      right: auto;
+                      z-index: 1000;
+                      padding: 5px 0;
+                      margin: 10px 0 0;
+                      font-size: 14px;
+                      border: 1px solid rgba(0,0,0,.2);
+                      border-radius: 3px;
+                      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+                      text-align:center;
+                      display: inline-block;
+                        li{
+                          color: #555;
+                          font-weight: 400;
+                          padding: 5px 0;
+                        }
+                    }
+                }
+            }
+            .articles{
+              padding: 15px 0;
+              border-bottom: 1px solid #eee;
+              display: inline-block;
+                .my_picture{
+                  float: left;
+                }
+                .article{
+                  margin-left: 35px;
+                  &__data{
+                    color: #999;
+                    font-size: 12px;
+                    margin-bottom: 2px;
+                  }
+                  &__title{
+                    display: inline-block;
+                    margin: 0 5px 0 0;
+                    line-height: 1.4;
+                    font-size: 18px;
+                    font-weight: 400;
+                  }
+                  &__tags{
+                    li{
+                      background-color: #dfdfdf;
+                      color: #555;
+                      border-bottom-right-radius: 2px;
+                      border-top-right-radius: 2px;
+                      display: inline-block;
+                      line-height: 19.2px;
+                      margin-left: .7em;
+                      padding: 0 2px;
+                      margin-right: 5px;
+                      font-size: 85%;
+                    }
+                  }
+                  &__sentence{
+                    color: #999;
+                    line-height: 1.4;
+                    margin-top: 3px;
+                    font-size: 14px;
+                  }
+                }
+            }
+        }
+        .container-body-right{
+          color: #4a4a4a;
+          height: 100%;
+          width: 32.33333%;
+          float: left;
+          font-size: 14px;
+          line-height: 1.42857;
+          padding-right: 10px;
+            .tag-field{
+              min-height: 1px;
+              padding-left: 10px;
+              padding-right: 10px;
+              &__related-tag{
+                line-height: 1.1;
+                margin-bottom: .5em
+              }
+              &__tag-name{
+                background-color: #dfdfdf;
+                color: #555;
+                border-bottom-right-radius: 2px;
+                border-top-right-radius: 2px;
+                display: inline-block;
+                line-height: 19.2px;
+                margin-left: .7em;
+                padding: 0 2px;
+                margin-right: 5px;
+                font-size: 85%;
+              }
+              &__tag-post{
+                display: inline-block;
+                margin: 0 10px;
+              }
+              &__tag-follower{
+                display: inline-block;
+                margin: 0 10px;
+              }
+              &__tag-follow{
+                width: 90px;
+                border-radius: 3px;
+                border: 1px solid #ccc;
+                margin-top: 10px;
+                text-align:center;
+                cursor: pointer;
+              }
+              hr{
+                width: 100%;
+                margin: 20px 0;
+                border-top: 0.5px solid #eee;
+              }
+            }
+            .search-option{
+              min-height: 1px;
+              padding-left: 10px;
+              padding-right: 10px;
+              #search_paper{
+                max-width: 366px;
+                max-height: 591px;
+              }
+            }
+        }
+    }
+}

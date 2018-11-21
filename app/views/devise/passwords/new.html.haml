@@ -1,0 +1,10 @@
+.container
+  = image_tag "logo.png", class:"logo"
+  .main-content-password
+    %h2.title パスワード再設定メールを送る
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      %h3.sub-title メールアドレス
+      .field
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+      .actions
+        = f.submit "送信", class: 'reset-btn'

@@ -1,0 +1,20 @@
+.article-new
+  = form_for @article do |f|
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :likes_count, value: 0
+    .article-new-title
+      = f.text_field :title, required: true, autofocus: true, placeholder: "タイトル"
+    .article-new-tag
+      = text_field_tag "article[tag][]", "", placeholder: "プログラミング技術に関連するタグをカンマ区切りで5つまで入力（例: Ruby Rails:4.2.0）"
+
+    .article-new-body
+      .article-new-body_text
+        .body_header
+        .body_body
+          = f.text_area :body, required: true, placeholder: "プログラミング知識をMarkdown記法で書いて共有しよう"
+      .article-new-body_guide
+        = image_tag "guide.png", class:"guide", alt:"Markdownガイド"
+
+
+    .save-btn
+      = f.submit "Qiitaに投稿", class: 'post_btn'

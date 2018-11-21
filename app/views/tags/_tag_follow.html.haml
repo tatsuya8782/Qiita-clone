@@ -1,0 +1,10 @@
+- if tags.include?(@tag)
+  - tags.delete(@tag)
+  .btn
+    = link_to user_path(name: current_user.name, email: current_user.email, tag: tags, this_tag: @tag, judge: 0, user: {image: current_user.image}), method: :patch, remote: true do
+      = image_tag "unfollow_tag_off.png", class:"unfollow", alt:""
+- else
+  - tags << @tag
+  .btn
+    = link_to user_path(name: current_user.name, email: current_user.email, tag: tags, this_tag: @tag, judge: 0, user: {image: current_user.image}), method: :patch, remote: true do
+      = image_tag "follow_tag_off.png", class:"follow", alt:""

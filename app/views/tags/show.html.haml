@@ -1,0 +1,112 @@
+
+- tags = []
+- current_user.taggings.each do |tagging|
+  - tags << tagging.tag.name
+- for tag in @tags
+  - if tag.name == @tag
+    - this_tag = tag
+
+.show-tag
+  .content-left
+    .title
+      .tag-icon
+      .tag-name
+        %h1
+          = this_tag.name
+      .follow-btn
+        %span{id: "tag-follow-btn"}
+          = render partial: 'tag_follow', locals: { tags: tags, tag: @tag }
+    .count
+      .posts
+        .posts-count
+          - posts_count = []
+          - for tagging in this_tag.taggings
+            - if tagging.taggable_type == "Article"
+              - posts_count << tagging.taggable_type
+          = posts_count.length
+        .title
+          = "投稿"
+      .followers
+        .followers-count
+          - followers_count = []
+          - for tagging in this_tag.taggings
+            - if tagging.taggable_type == "User"
+              - followers_count << tagging.taggable_type
+          = followers_count.length
+        .title
+          = "フォロワー"
+      .explanation
+        = "#{@tag}に関する情報が集まっています。現在#{posts_count.length}件の投稿があります。また#{followers_count.length}人のユーザーが#{@tag}タグをフォローしています。"
+    .articles
+      - taggings = []
+      - articles = []
+      - for tagging in this_tag.taggings
+        - if tagging.taggable_type == "Article"
+          - taggings << tagging.taggable_id
+      - for article in @articles
+        - if taggings.include?(article.id)
+          - articles << article
+      .liked-articles
+        - articles.sort! do |a, b|
+          - b[:likes_count] <=> a[:likes_count]
+        .top
+          = "いいねされた投稿"
+        .contents
+          - articles.each do |article|
+            .article-tag
+              .author-avatar
+                - if article.user.image.blank?
+                  = image_tag "no-image.png", class: "avatar", alt:""
+                - else
+                  = image_tag "#{article.user.image}", class: "avatar", alt:"プロフ画"
+              .content
+                .author
+                  %span.author-name
+                    = link_to article.user.name, "/#{article.user.name}", class: "author-name"
+                  %span.date
+                    が
+                    = "#{article.created_at.strftime('%-m月%d日')}"
+                    に投稿
+                .content-title
+                  = link_to article.title, "/articles/#{article.id}", :target=>["_blank"], class: "title-text"
+                .stock-and-tags
+                  %span{id: "stock-of-#{article.id}"}
+                    = render partial: 'stock', locals: { article: article }
+                  .tags
+                    %ul
+                      - article.tags.each do |tag|
+                        %li.tag
+                          = link_to tag.name, "/tags/#{tag.name}", class: "tag-name"
+      .newest-articles
+        - articles.sort! do |a, b|
+          - b[:id] <=> a[:id]
+        .top
+          = "新着投稿"
+        .contents
+          - articles.each do |article|
+            .article-tag
+              .author-avatar
+                - if article.user.image.blank?
+                  = image_tag "no-image.png", class: "avatar", alt:""
+                - else
+                  = image_tag "#{article.user.image}", class: "avatar", alt:"プロフ画"
+              .content
+                .author
+                  %span.author-name
+                    = link_to article.user.name, "/#{article.user.name}", class: "author-name"
+                  %span.date
+                    が
+                    = "#{article.created_at.strftime('%-m月%d日')}"
+                    に投稿
+                .content-title
+                  = link_to article.title, "/articles/#{article.id}", :target=>["_blank"], class: "title-text"
+                .stock-and-tags
+                  %span{id: "stock-of-#{article.id}"}
+                    = render partial: 'stock', locals: { article: article }
+                  .tags
+                    %ul
+                      - article.tags.each do |tag|
+                        %li.tag
+                          = link_to tag.name, "/tags/#{tag.name}", class: "tag-name"
+
+  .content-right

@@ -1,0 +1,94 @@
+.mypage-container
+  .container-body
+    .container-body-left
+      .profile
+        .profile__avatar
+          - if @user.image.blank?
+            = image_tag "no-image.png", class: "avatar", alt:""
+          - else
+            = image_tag "#{@user.image}", class: "avatar", alt:"プロフ画"
+        - if @user.id == current_user.id
+          .profile__update
+            = form_for @user,:url => {:action => 'update'} do |f|
+              = f.file_field :image
+              %br/
+              = f.submit 'set profile picture'
+
+        .profile__my-name
+          .full-name
+            = @user.name
+        .profile__tags-info
+          .tag-header
+            フォロー中のタグ
+            - tags = []
+            - for tagging in @user.taggings
+              - tags << tagging.tag.name
+          %ul
+            - tags.each do |tag|
+              %li
+                = tag
+    .container-body-right
+
+      .chart
+      .chart-tab
+        %ul
+          %li
+            .count
+              - count = []
+              - for article in @articles
+                - if article.user == @user
+                  - count << article.id
+                  - number = count.length
+              - if number.blank?
+                =0
+              - else
+                = number
+            .count-title
+              Items
+          %li
+            .count
+              0
+            .count-title
+              Contribution
+          %li
+            .count
+              0
+            .count-title
+              Followers
+
+      .article-tab-recent
+        %ul
+          %li--recent
+            = link_to '投稿一覧', user_path, method: :get, class: "no_line_color_blue"
+          %li
+            = link_to  'いいねした投稿', user_like_path(user_id: @id), method: :get, class: "no_line_color_blue"
+          %li
+            = link_to '限定共有投稿', user_private_path(user_id: @id), method: :get, class: "no_line_color_blue"
+          %li
+            = link_to 'コメント', user_commentpage_path(user_id: @id), method: :get, class: "no_line_color_blue"
+      .articles
+        - @articles.each do |article|
+          - if article.user == @user
+            .article_area
+              .my_picture
+                - if article.user.image.blank?
+                  = image_tag "no-image.png", size: "48x48", alt:"", class: "author-avatar"
+                - else
+                  = image_tag "#{article.user.image}", size: "48x48", alt:"プロフ画", class: "author-avatar"
+              .article
+                .article__data
+                  %span.author-name
+                    = link_to article.user.name, "/#{article.user.name}", class: "author-name", class: "no_line_color_blue"
+                  %span.date.no_line_color_blue
+                    が
+                    = "#{article.created_at.strftime('%-m月%d日')}"
+                    に投稿
+                .article__title
+                  = link_to article.title, "/articles/#{article.id}", :target=>["_blank"], class: "title-text", class: "no_line_color_blue"
+                .article__tags
+                  %ul
+                  - article.tags.each do |tag|
+                    %li
+                      = link_to tag.name, "/tags/#{tag.name}", class: "tag-name", class: "no_line_color_gray"
+
+

@@ -1,0 +1,67 @@
+.mypage-container
+  .container-body
+    .container-body-left
+      .profile
+        .profile__avatar
+          - if @user.image.blank?
+            = image_tag "no-image.png", class: "avatar", alt:""
+          - else
+            = image_tag "#{current_user.image}", class: "avatar", alt:"プロフ画"
+          .profile__update
+        .profile__my-name
+          .full-name
+            = @user.name
+        .profile__tags-info
+          .tag-header
+            フォロー中のタグ
+            - tags = []
+            - for tagging in current_user.taggings
+              - tags << tagging.tag.name
+          %ul
+            - tags.each do |tag|
+              %li
+                = tag
+
+    .container-body-right
+      .chart
+      .chart-tab
+        %ul
+          %li
+            .count
+              - count = []
+              - for article in @articles
+                - if article.user == @user
+                  - count << article.id
+                  - number = count.length
+              - if number.blank?
+                =0
+              - else
+                = number
+            .count-title
+              Items
+          %li
+            .count
+              0
+            .count-title
+              Contribution
+          %li
+            .count
+              0
+            .count-title
+              Followers
+      / = render 'users/recent-articles'
+      .article-tab-comment
+        %ul
+          %li
+            = link_to '投稿一覧', user_path(id: @id), method: :get, class: "no_line_color_blue"
+          %li
+            = link_to  'いいねした投稿', user_like_path(user_id: @id), method: :get, class: "no_line_color_blue"
+          %li
+            = link_to '限定共有投稿', user_private_path(user_id: @id), method: :get, class: "no_line_color_blue"
+          %li--comment
+            = link_to 'コメント', user_commentpage_path(user_id: @id), method: :get, class: "no_line_color_blue"
+
+
+
+
+

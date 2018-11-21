@@ -1,0 +1,46 @@
+
+.stocks
+  .content-left
+    .title
+      = image_tag "stock_list_title.png", class:"title_img", alt:""
+    .search
+      = search_form_for @search, url: articles_stocks_search_path do |f|
+        %h3 ストック内検索
+        = f.text_field :title_or_body_cont, class: "search-field"
+        = image_submit_tag "search_button_off.png", mouseover: "search_button_on.png", class: "actions"
+
+    .tags
+  .content-right
+    - @stocks.each do |stock|
+      .article-left
+        .author-avatar
+          - if stock.article.user.image.blank?
+            = image_tag "no-image.png", class: "avatar", alt:""
+          - else
+            = image_tag "#{stock.article.user.image}", class: "avatar", alt:"プロフ画"
+        .content
+          .author
+            %span.author-name
+              = link_to stock.article.user.name, "/#{stock.article.user.name}", class: "author-name"
+            %span.date
+              が
+              = "#{stock.article.created_at.strftime('%-m月%d日')}"
+              に投稿
+          .title
+            = link_to stock.article.title, "/articles/#{stock.article.id}", :target=>["_blank"], class: "title-text"
+          .stock-and-tags
+            %span{id: "stock-of-#{stock.id}"}
+              = render partial: 'stock', locals: { stock: stock }
+            .tags
+              %ul
+                - stock.article.tags.each do |tag|
+                  %li.tag
+                    = link_to tag.name, "/tags/#{tag.name}", class: "tag-name"
+
+      .article-right
+
+
+
+
+
+

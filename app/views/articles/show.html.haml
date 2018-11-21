@@ -1,0 +1,114 @@
+%link{:href => "https://use.fontawesome.com/releases/v5.0.6/css/all.css", :rel => "stylesheet"}/
+%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+%meta{:charset => "UTF-8"}/
+%meta{:content => "width=device-width, user-scalable=no", :name => "viewport"}/
+%meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+%title ${title}
+%meta{:content => "${description}", :name => "description"}/
+:css
+  ${style}
+%script{:src => "http://cdn.rawgit.com/phi-jp/high/0.0.3/high.js"}
+%script{:src => "http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"}
+:javascript
+  window.onload = function() {
+
+    // 要素を取得
+    var editorTA = document.querySelector('.editor .ta');
+
+    var sync = function() {
+        var value = editorTA.value; // テキストエリアから値を取得
+        var md = marked(value); // マークダウンに変換
+        document.getElementById("hello").innerHTML = md;
+    };
+
+    editorTA.onblur = sync;
+
+    sync();
+  };
+
+
+#main
+  .wapper
+    #container{style: "display: grid;"}
+      #item.stick_Menu
+        %span.thumbs_icon{ id: "like-of-#{@article.id}"}
+          = render partial: 'likes/like', locals: { article: @article, likes: @likes }
+        %span.folder_icon{ id: "stocks-of-#{@article.id}"}
+          = render partial: 'stocks/show', locals: { article: @article }
+        %span#small_twitter
+          %a.fab.fa-twitter{:href => "https://twitter.com/intent/tweet"}
+        %span#small_facebook
+          %i.fab.fa-facebook-f
+      #item.main
+        .show_article
+          .show_header
+            .show_header_info
+              .show_header_info__author
+                %a.profile
+                - if @article.user.image.blank?
+                  = image_tag "no-image.png", class: "profile_picture", size: "32x32"
+                - else
+                  = image_tag "#{@article.user.image}", class: "profile_picture", size: "32x32"
+                %h1.author_name
+                  = link_to @article.user.name
+              .show_header_info__time
+                = form_posted_time(@article.created_at)
+              .show_header_info__meta
+                %i.fab.fa-ellipsis-h.fa#icon
+            %h1.title
+              = @article.title
+          .editor
+            %textarea.ta= @article.body
+          #hello preview
+          .show_footer
+            .show_footer_menu
+              %span.fa-stack#plane
+                %i.fas.fa-paper-plane
+                %a.edit-request
+                  編集リクエスト
+              %span.fa-stack#directory
+                %i.fas.fa-folder-open
+                %a.stock
+                  ストック
+              %span.fa-stack#like
+                %i.fas.fa-thumbs-up
+                %a.like
+                  いいね
+            .show_footer_social
+              %span.fa-stack#twitter
+                %i.fab.fa-twitter
+                %a.tweet
+                  tweet
+              %span.fa-stack#bold
+                %i.fas.fa-bold
+                %a.hatena
+                  11
+              %span.fa-stack#google
+                %i.fab.fa-google-plus-g
+              %span.fa-stack#slack
+                %i.fab.fa-slack-hash
+                %a.slack
+                  slack
+              %span.fa-stack#like_icon
+                %i.fas.fa-thumbs-up
+                %a.like_icon
+                  Like
+          .show_footer_author_info
+            %a.profile
+              - if @article.user.image.blank?
+                = image_tag "no-image.png", class: "profile_picture", size: "60x60"
+              - else
+                = image_tag "#{@article.user.image}", class: "profile_picture", size: "60x60"
+            .author_info_body
+              .author_info_header
+                %h1.author_name
+                  @ねこねこ
+              .author_info_description
+                テキスト
+              .author_info_footer
+                %span.fa-stack.fa-1x#follow
+                  %i.fas.fa-user-plus
+                  %a.follow
+                    フォロー
+      #item.topic
+        目次

@@ -1,0 +1,12 @@
+.stock
+  - stocks = []
+  - for stock in article.stocks
+    - if stock.user_id == current_user.id
+      - stocks << stock.id
+      - id = stock.id
+  - if stocks.length > 0
+    = button_to article_stock_path(id: id, article_id: article.id), method: :delete, class: "btn-bg", remote: true do
+      = image_tag "stock_button_on.png", class:"stock-button", alt:""
+  - else
+    = button_to article_stocks_path(article_id: article.id), method: :post, class: "btn-bg", remote: true do
+      = image_tag "stock_button_off.png", class:"stock-button", alt:""

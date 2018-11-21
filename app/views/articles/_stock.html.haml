@@ -1,0 +1,7 @@
+.stock
+  - if stock.is_stocked == 1
+    = button_to article_stock_path(stock, article_id: stock.article.id, is_stocked: 0), method: :patch, class: "btn-bg", remote: true do
+      = image_tag "stock_button_on.png", class:"stock-button", alt:""
+  - else
+    = button_to article_stock_path(stock, article_id: stock.article.id, is_stocked: 1), method: :patch, class: "btn-bg", remote: true do
+      = image_tag "stock_button_off.png", class:"stock-button", alt:""

@@ -1,0 +1,175 @@
+
+.container {
+  margin: 0 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  .logo {
+    padding-top: 30px;
+    width: 109.28px;
+    height: 45px;
+  }
+  .main-content {
+    width: 666px;
+    margin: auto;
+    .title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 400px;
+      color: #4a4a4a;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .title-register {
+      font-size: 36px;
+      font-weight: 400px;
+      color: #4a4a4a;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .welcome-message {
+      font-size: 21px;
+      font-weight: 300px;
+      color: #4a4a4a;
+      margin-bottom: 20px;
+    }
+    .line {
+      height: 0;
+      border: 0;
+      border-top: 1px solid #eee;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+  .main-content-password{
+    width: 560px;
+    margin: auto;
+    .title {
+      font-size: 36px;
+      font-weight: 400px;
+      color: #4a4a4a;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .sub-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #4a4a4a;
+      margin-bottom: 5px;
+    }
+    #user_email {
+      height: 22px;
+      width: 534px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      padding: 6px 12px;
+    }
+    .reset-btn {
+      height: 33px;
+      width: 54px;
+      color: #fff;
+      background-color: #59bb0c;
+      border-color: #4ea30a;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+  }
+  .left-content {
+    float: left;
+    width: 333px;
+    .sns_btn {
+      padding: 0 10px;
+      .sns {
+        width: 313px;
+        height: 45px;
+      }
+      .sign-up {
+        margin-top: 14px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+      }
+      .sign-up {
+        font-size: 14px;
+        color: #999;
+        .register {
+          font-size: 14px;
+          color: #337ab7;
+          text-decoration: none;
+        }
+      }
+      .sns-message {
+        color: #999;
+        text-decoration: none;
+        font-size: 14px;
+      }
+    }
+  }
+  .right-content {
+    float: right;
+    width: 312px;
+    padding: 0 10px;
+    border-left: 1px solid #eee;
+    #user_name {
+        height: 22px;
+        width: 287px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        padding: 6px 12px;
+    }
+    #user_email {
+        height: 22px;
+        width: 287px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        padding: 6px 12px;
+    }
+    #user_password {
+        height: 22px;
+        width: 287px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+    }
+    .forget-password {
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    .forget-password a {
+      color: #337ab7;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .register-message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #999;
+      .terms {
+        font-size: 14px;
+        color: #337ab7;
+        text-decoration: none;
+      }
+    }
+    .actions {
+      margin-top: 20px;
+      margin-bottom: 15px;
+      .login_btn {
+        height: 45px;
+        width: 311px;
+        color: #fff;
+        background-color: #59bb0c;
+        border-color: #4ea30a;
+        border-radius: 3px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+    //     width: 100%;
+    //     height: 28px;
+    //     margin: 5px;
+    //     margin-bottom: 0;
+    //     border-radius: 3px;
+    //     border: 1px solid #ddd;
+    // }

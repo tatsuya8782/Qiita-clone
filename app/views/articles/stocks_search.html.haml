@@ -1,0 +1,56 @@
+
+.stocks-search-content
+  .content-left
+    .search-window
+      = search_form_for @search, url: articles_search_path do |f|
+        = f.text_field :title_or_body_cont, class: "search-field"
+        = image_submit_tag "search_button_green_off.png", class: "search-btn"
+    .navigation
+      .nav-tabs
+        %ul
+          %li.nav-tab-all
+            = link_to 'すべて',{:controller=>"articles",:action=>"search",:q=>{:title_or_body_cont=>"#{@query}"}}
+            %span.count
+              = @articles.length
+          %li.nav-tab-stocked
+            - stocks = []
+            - @articles.each do |article|
+              - article.stocks.each do |stock|
+                - if stock.user_id == current_user.id
+                  - stocks << article
+            ストック済み
+            %span.count
+              = stocks.length
+      .sort-btn
+    .articles
+      - @articles.each do |article|
+        - article.stocks.each do |stock|
+          - if stock.user_id == current_user.id
+            .article-left
+              .author-avatar
+                - if article.user.image.blank?
+                  = image_tag "no-image.png", class: "avatar", alt:""
+                - else
+                  = image_tag "#{article.user.image}", class: "avatar", alt:"プロフ画"
+              .content
+                .author
+                  %span.author-name
+                    = link_to article.user.name, "/#{article.user.name}", class: "author-name"
+                  %span.date
+                    が
+                    = "#{article.created_at.strftime('%-m月%d日')}"
+                    に投稿
+                .title
+                  = link_to article.title, "/articles/#{article.id}", :target=>["_blank"], class: "title-text"
+                .tags
+                  %ul
+                    - article.tags.each do |tag|
+                      %li.tag
+                        = link_to tag.name, "/tags/#{tag.name}", class: "tag-name"
+                .body
+                  = article.body.truncate(80)
+
+    .pagination
+  .content-right
+    .search-guide
+

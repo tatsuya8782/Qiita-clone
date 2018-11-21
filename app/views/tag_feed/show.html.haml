@@ -1,0 +1,235 @@
+.tag_feed
+  .allWrapper
+    .container1
+      .menu-bar
+        .menu-items1
+          .menu-icon1
+            = image_tag "3-trend_icon.png", class:"trend_icon3" , alt:"トレンド"
+          .menu-item1
+            .item1-name
+              = link_to("トレンド", trend_path, class: 'articles_font_trend3')
+
+        .menu-items2
+          .menu-icon2
+            = image_tag "1-menubar-timeline.png", class:"menubar-timeline" , alt: "タイムライン"
+          .menu-item2
+            .item2-name
+              = link_to("タイムライン", timeline_path, class: 'articles_font_timeline3')
+
+        .menu-items3
+          .menu-icon3
+            = image_tag "3-menubar-tag_feed.png", class:"menu-bar-tag_feed3" , alt:"タグフィード"
+          .menu-item3
+            .item3-name
+              = link_to("タグフィード", tag_feed_path, class: 'articles_font_tag-feed3')
+
+      .main-view
+        .main-item
+          .main-header
+            .main-label-icon1
+              = image_tag "3-mainview.png", class:"trend_view", alt:"trend_view"
+              .main-label1
+                .label-article
+                  タグフィード
+
+        - article_ids = []
+        - for article in @articles
+          - for tag in article.tags
+            - for user_tag in current_user.tags
+              - if tag == user_tag
+                - article_ids << article.id
+                - newarray = article_ids.uniq
+        - if newarray.blank?
+        - else
+          - for num in newarray
+            - for article in @articles
+              - if num == article.id
+                .articles
+                  .picture
+                    /= image_tag "python_tag.png", class:"python_tags", alt:""
+                  .article
+                    .article__tags
+                      %ul
+                        - article.tags.each do |tag|
+                          %li.tag
+                            ●
+                            = link_to tag.name, "/tags/#{tag.name}", class: "tag-link"
+                    .time_article
+                      .time
+                        = "#{article.created_at.strftime('%-m月%d日')}"
+                    .article__title
+                      = link_to article.title, "/articles/#{article.id}", :target=>["_blank"], class: "title-text"
+                    .article__data
+                      - if article.user.image.blank?
+                        = image_tag "no-image.png", class: "avatar_tag-feed", alt:""
+                        = link_to article.user.name, "/#{article.user.name}", class: "author-name"
+                      - else
+                        = image_tag "#{article.user.image}", class: "avatar_tag-feed", alt:"プロフ画"
+                        = link_to article.user.name, "/#{article.user.name}", class: "author-name"
+
+      .a-side
+        .p-home_ad
+          広告
+        .ranking-user
+          .ra-user-bar
+            .user-header
+              .user-header-label
+                ユーザーランキング
+              .user-list-tab
+                .user-list-tabitem1
+                  累計
+                .user-list-tabitem2
+                .user-list-tabitem3
+            .user-list-content
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!gold!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @shotyan
+                .ra-user-count
+                  552
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!silvar!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @hihiman
+                .ra-user-count
+                  530
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!bronze!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @nauhodo
+                .ra-user-count
+                  514
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!4!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @gannzi-
+                .ra-user-count
+                  423
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!5!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @akebono
+                .ra-user-count
+                  333
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!6!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @coffee2
+                .ra-user-count
+                  320
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!7!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @banana3
+                .ra-user-count
+                  309
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!8!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @sos_man
+                .ra-user-count
+                  209
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!9!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @yarima9
+                .ra-user-count
+                  190
+                  .ra-user-contrib
+                    Contributions
+
+              .ra-user
+                .ra-user-start
+                .ra-user-icon
+                .trophy
+                  = image_tag "!10!.png", class:"rank", alt:"number_one"
+                  .gold-before
+                .ra-user-image
+                  = image_tag "https://qiita-image-store.s3.amazonaws.com/0/164189/profile-images/1491563384", size: "32x32",  alt:"プロフ画"
+                .user-name
+                  @aa-chan
+                .ra-user-count
+                  140
+                  .ra-user-contrib
+                    Contributions
+
+            .container-body-right
+              .container-body
